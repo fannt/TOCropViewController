@@ -226,6 +226,8 @@ typedef NS_ENUM(NSInteger, TOCropViewControllerToolbarPosition) {
  */
 @property (nonatomic, strong) NSArray *excludedActivityTypes;
 
+/* Custom toolbar height*/
+@property (nonatomic, readwrite) CGFloat customToolbarHeight;
 
 
 ///------------------------------------------------

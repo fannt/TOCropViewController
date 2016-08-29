@@ -224,24 +224,24 @@
     if (!verticalLayout) {
         frame.origin.x = 0.0f;
         frame.origin.y = 0.0f;
-        frame.size.width = 44.0f;
+        frame.size.width = self.customToolbarHeight;
         frame.size.height = CGRectGetHeight(self.view.frame);
     }
     else {
         frame.origin.x = 0.0f;
         
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
-            frame.origin.y = CGRectGetHeight(self.view.bounds) - 44.0f;
+            frame.origin.y = CGRectGetHeight(self.view.bounds) - self.customToolbarHeight;
         } else {
             frame.origin.y = 0;
         }
         
         frame.size.width = CGRectGetWidth(self.view.bounds);
-        frame.size.height = 44.0f;
+        frame.size.height = self.customToolbarHeight;
         
         // If the bar is at the top of the screen and the status bar is visible, account for the status bar height
         if (self.toolbarPosition == TOCropViewControllerToolbarPositionTop && self.prefersStatusBarHidden == NO) {
-            frame.size.height = 64.0f;
+            frame.size.height = self.customToolbarHeight + 20.0f;
         }
     }
     
@@ -264,9 +264,9 @@
     
     CGRect frame = CGRectZero;
     if (!verticalLayout) {
-        frame.origin.x = 44.0f;
+        frame.origin.x = self.customToolbarHeight;
         frame.origin.y = 0.0f;
-        frame.size.width = CGRectGetWidth(bounds) - 44.0f;
+        frame.size.width = CGRectGetWidth(bounds) - self.customToolbarHeight;
         frame.size.height = CGRectGetHeight(bounds);
     }
     else {
@@ -275,11 +275,11 @@
         if (_toolbarPosition == TOCropViewControllerToolbarPositionBottom) {
             frame.origin.y = 0.0f;
         } else {
-            frame.origin.y = 44.0f;
+            frame.origin.y = self.customToolbarHeight;
         }
 
         frame.size.width = CGRectGetWidth(bounds);
-        frame.size.height = CGRectGetHeight(bounds) - 44.0f;
+        frame.size.height = CGRectGetHeight(bounds) - self.customToolbarHeight;
     }
     
     return frame;
@@ -900,6 +900,14 @@
 - (CGRect)imageCropFrame
 {
     return self.cropView.imageCropFrame;
+}
+
+- (CGFloat)customToolbarHeight
+{
+    if (!_customToolbarHeight) {
+        _customToolbarHeight = 44.f;
+    }
+    return _customToolbarHeight;
 }
 
 @end
